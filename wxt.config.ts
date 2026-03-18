@@ -1,45 +1,39 @@
-import { defineConfig } from 'wxt';
+import { defineConfig } from "wxt";
 
-// supposed to be a 3kB alt to React so sounds good amirite
 export default defineConfig({
-  srcDir: 'src',
+  srcDir: "src",
+  runner: {
+    binaries: {
+      chrome: "/usr/bin/google-chrome-stable",
+    },
+  },
   vite: () => ({
     esbuild: {
-      jsx: 'automatic',
-      jsxImportSource: 'preact',
+      jsx: "automatic",
+      jsxImportSource: "preact",
     },
     resolve: {
       alias: {
-        'react':             'preact/compat',
-        'react-dom':         'preact/compat',
-        'react/jsx-runtime': 'preact/jsx-runtime',
+        react: "preact/compat",
+        "react-dom": "preact/compat",
+        "react/jsx-runtime": "preact/jsx-runtime",
       },
     },
   }),
-  manifest: ({ browser }) => ({
-    name: 'Kagi Translate',
-    description: 'Translate selected text to Plain English or LinkedIn Speak via Kagi',
-    permissions: [
-      'contextMenus',
-      'activeTab',
-      'scripting',
-      'storage',
-      ...(browser === 'chrome' ? ['sidePanel'] : []),
-    ],
-    // this is actually very important for testing suite
-    host_permissions: [
-      'https://translate.kagi.com/*',
-    ],
-    action: { default_title: 'Kagi Translate' },
-    ...(browser === 'chrome'
-      ? { side_panel: { default_path: 'sidebar.html' } }
-      : {
-          sidebar_action: {
-            default_title: 'Kagi Translate',
-            default_panel: 'sidebar.html',
-            default_icon: { 48: 'icon/48.png' },
-          },
-        }
-    ),
-  }),
+  manifest: {
+    name: "LinkedIn Translator",
+    description:
+      "Right-click selected text to translate to Plain English or LinkedIn Speak via Kagi.",
+    permissions: ["contextMenus"],
+    browser_specific_settings: {
+      gecko: {
+        id: "kagi-translate@extension",
+        strict_min_version: "140.0",
+        data_collection_permissions: {
+          required: ["none"],
+          optional: [],
+        },
+      } as any, // bad practices? very much but I don't care honestly
+    },
+  },
 });

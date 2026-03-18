@@ -10,14 +10,7 @@
     "zip": "wxt zip",
     "zip:firefox": "wxt zip -b firefox"
   },
-  "dependencies": {
-    "preact": "^10.22.0"
-  },
   "devDependencies": {
-    "@babel/core": "^7.29.0",
-    "@babel/plugin-transform-react-jsx": "^7.28.6",
-    "@preact/preset-vite": "^2.8.2",
-    "prettier": "^3.8.1",
     "typescript": "^5.4.5",
     "wxt": "^0.19.0"
   }
