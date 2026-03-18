@@ -21,7 +21,7 @@ This extension is extremely lightweight infact 12kB to be precise cause less is 
 
 ## Demo
 
-<video src="./assets/demo.mp4" controls width="100%"></video>
+https://github.com/user-attachments/assets/3fea6fd4-ff6b-4332-b109-2d84c728bff5
 
 Pretty easy to use if you ask me
 
